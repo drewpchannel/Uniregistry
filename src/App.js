@@ -35,8 +35,13 @@ class DomainTable extends Component {
   }
 
   loadEditor(){
-    console.log($)
     $('#mainTable').hide();
+    $('#editor').show();
+  }
+
+  saveButton() {
+    $('#mainTable').show();
+    $('#editor').hide();
   }
 
   render() {
@@ -54,6 +59,9 @@ class DomainTable extends Component {
             {this.state.currentTable}
           </tbody>
         </table>
+        <div id="editor" style={{display:'none'}}>
+          <text onClick={this.saveButton}>editor</text>
+        </div>
       </div>
     );
   }
