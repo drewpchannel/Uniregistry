@@ -39,14 +39,15 @@ class DomainTable extends Component {
 
   loadEditor(linkClicked){
     $('#mainTable').hide();
-    $('#editor').show();
-    var foundData = [];
+    var foundData = {};
     domains.domains.forEach((elem, index) => {
       if (elem.domain === linkClicked.target.text) {
         foundData = domains.domains[index];
       }
     });
-    this.setState({editorForm: foundData})
+    this.setState({editorForm: foundData});
+    console.log(this.state)
+    $('#editor').show();
   }
 
   saveButton() {
@@ -64,7 +65,6 @@ class DomainTable extends Component {
       }
     });
     this.createTableArray(tableChanges);
-    this.setState({editorForm: tableChanges})
   }
 
   render() {
