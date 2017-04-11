@@ -18,14 +18,14 @@ class DomainTable extends Component {
     }
   }
 
-  createTableArray() {
+  createTableArray(currentDomains) {
     var tableArray = [];
-    domains.domains.forEach((elem, index) => {
+    currentDomains.forEach((elem, index) => {
       tableArray.push(
-        <tr key={domains.domains[index].domain}>
-          <td><a href="#" onClick={this.loadEditor.bind(this)}>{domains.domains[index].domain}</a></td>
-          <td>{this.displayCheck(domains.domains[index].id)}</td>
-          <td>${(domains.domains[index].price/100).toFixed(2)}</td>
+        <tr key={currentDomains[index].domain}>
+          <td><a href="#" onClick={this.loadEditor.bind(this)}>{currentDomains[index].domain}</a></td>
+          <td>{this.displayCheck(currentDomains[index].id)}</td>
+          <td>${(currentDomains[index].price/100).toFixed(2)}</td>
         </tr>
         );
     });
@@ -33,7 +33,7 @@ class DomainTable extends Component {
   }
 
   componentWillMount() {
-    this.createTableArray();
+    this.createTableArray(domains.domains);
     this.setState({domains: domains})
   }
 
@@ -61,9 +61,10 @@ class DomainTable extends Component {
           email: $('#registranEmail')[0].value,
           price: $('#priceValue')[0].value
         })
-      
       }
     });
+    this.createTableArray(tableChanges);
+    this.setState({editorForm: tableChanges})
   }
 
   render() {
