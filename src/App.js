@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 class DomainTable extends Component {
   constructor(props){
@@ -20,7 +21,7 @@ class DomainTable extends Component {
     domains.domains.forEach((elem, index) => {
       tableArray.push(
         <tr key={domains.domains[index].domain}>
-          <td><a href={domains.domains[index].domain}>{domains.domains[index].domain}</a></td>
+          <td><a href="#" onClick={this.loadEditor}>{domains.domains[index].domain}</a></td>
           <td>{this.displayCheck(domains.domains[index].id)}</td>
           <td>${(domains.domains[index].price/100).toFixed(2)}</td>
         </tr>
@@ -33,10 +34,15 @@ class DomainTable extends Component {
     this.createTableArray();
   }
 
+  loadEditor(){
+    console.log($)
+    $('#mainTable').hide();
+  }
+
   render() {
     return (
       <div className="table-striped">
-        <table className="table table-striped">
+        <table id="mainTable" className="table table-striped">
           <thead>
             <tr>
               <th>Domain Name</th>
